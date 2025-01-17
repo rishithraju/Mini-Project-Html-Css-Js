@@ -13,6 +13,13 @@ body {
   margin: 0; 
 }
 
+h1{
+  display: flex;
+  top:50px;
+  left:50px;
+  color:red;
+}
+
 #clock {
   font-size: 4em;
   padding: 20px;
@@ -25,8 +32,10 @@ body {
 </head>
 <body>
 <div id="clock"></div>
+<h1>Clock 12-Hours Formate</h1>
 <script>
-function updateClock() {
+
+function updateClock(event) {
   const now = new Date();
   let hours = now.getHours();
   let minutes = now.getMinutes();
@@ -51,6 +60,7 @@ function updateClock() {
 }
 setInterval(updateClock, 1000); 
 updateClock(); 
+
 </script>
 </body>
 </html>
