@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>To Do List</title>
+<style>
+body {
+  font-family: sans-serif;
+  background-color: #111827; /* Dark background */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#container {
+  background-color: #1f2937; /* Darker container background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 400px; /* Set a fixed width */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f97316; /* Orange title */
+}
+
+#input-area {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+#taskInput {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #374151; /* Darker border */
+  border-radius: 4px;
+  background-color: #374151; /* Darker background */
+  color: white;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #f97316; /* Orange button */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background-color: #374151; /* Darker list item background */
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+li span {
+  flex-grow: 1;
+}
+
+li button {
+  background-color: #dc2626; /* Red delete button */
+  margin-left: 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #6b7280; /* Lighter text color for completed tasks */
+}
+</style>
+</head>
+<body>
+
+<div id="container">
+  <h1>To Do List</h1>
+  <div id="input-area">
+    <input type="text" id="taskInput" placeholder="Make your list">
+    <button onclick="addTask()">Add</button>
+  </div>
+  <ul id="taskList">
+  </ul>
+</div>
+
+<script>
+function addTask() {
+  const taskInput = document.getElementById("taskInput");
+  const taskList = document.getElementById("taskList");
+  const taskText = taskInput.value.trim();
+
+  if (taskText !== "") {
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+    span.textContent = taskText;
+    span.addEventListener("click", () => span.classList.toggle("completed"));
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "X"; // Simpler delete button
+    deleteButton.onclick = () => li.remove();
+
+    li.appendChild(span);
+    li.appendChild(deleteButton);
+    taskList.appendChild(li);
+    taskInput.value = "";
+  }
+}
+</script>
+
+</body>
+</html>

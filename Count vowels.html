@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,17 +39,17 @@
     </style> 
 </head>
 <body>
-
     <h1>Vowel Counter</h1>
 
     <textarea id="textInput"></textarea>
 
-    <button id="countButton">Count Vowels</button>
-    <button id="resetButton">Reset</button>
+    <button id="countButton">Count Vowels Button</button>
+    <button id="resetButton">Reset Button</button>
 
     <h2 id="result">Vowel Count: 0</h2>
 
     <script>
+        const textoutput = inner;
         const textInput = document.getElementById('textInput');
         const countButton = document.getElementById('countButton');
         const resetButton = document.getElementById('resetButton');
@@ -58,6 +57,7 @@
 
         countButton.addEventListener('click', () => {
             const text = textInput.value.toUpperCase();
+
             let vowelCount = 0;
             const vowels = "AEIOU";
 
@@ -73,7 +73,7 @@
         resetButton.addEventListener('click', () => {
             textInput.value = "";
             result.textContent = "Vowel Count: 0";
-        });
+        });    
     </script>
 </body>
 </html>

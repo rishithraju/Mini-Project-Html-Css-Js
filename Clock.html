@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Analog Clock</title>
+<style>
+body {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.clock {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #000; /* Black background */
+  border: 2px solid #333; /* Darker border */
+  position: relative;
+}
+
+.center {
+  width: 10px; /* Smaller center dot */
+  height: 10px;
+  background-color: #fff; /* White center dot */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: 50% 100%;
+  background-color: #fff; /* White hands */
+  border-radius: 2px;
+}
+
+.hour-hand {
+  width: 6px;
+  height: 70px;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.minute-hand {
+  width: 4px;
+  height: 90px;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.second-hand {
+  width: 2px;
+  height: 110px;
+  background-color: red;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+/* Add clock numbers */
+.number {
+    position: absolute;
+    font-size: 18px;
+    font-family: sans-serif;
+    color: white;
+    text-align: center;
+    /* Prevent text selection */
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.number12 {top: 10px; left: 50%; transform: translateX(-50%);}
+.number1 {top: 30px; right: 40px;}
+.number2 {top: 70px; right: 15px;}
+.number3 {right: 10px; top: 50%; transform: translateY(-50%);}
+.number4 {bottom: 70px; right: 15px;}
+.number5 {bottom: 30px; right: 40px;}
+.number6 {bottom: 10px; left: 50%; transform: translateX(-50%);}
+.number7 {bottom: 30px; left: 40px;}
+.number8 {bottom: 70px; left: 15px;}
+.number9 {left: 10px; top: 50%; transform: translateY(-50%);}
+.number10 {top: 70px; left: 15px;}
+.number11 {top: 30px; left: 40px;}
+
+
+</style>
+</head>
+<body>
+
+<div class="clock">
+    <div class="center"></div>
+    <div class="hand hour-hand"></div>
+    <div class="hand minute-hand"></div>
+    <div class="hand second-hand"></div>
+    <div class="number number12">12</div>
+    <div class="number number1">1</div>
+    <div class="number number2">2</div>
+    <div class="number number3">3</div>
+    <div class="number number4">4</div>
+    <div class="number number5">5</div>
+    <div class="number number6">6</div>
+    <div class="number number7">7</div>
+    <div class="number number8">8</div>
+    <div class="number number9">9</div>
+    <div class="number number10">10</div>
+    <div class="number number11">11</div>
+
+</div>
+
+<script>
+function updateClock() {
+  const now = new Date();
+  const seconds = now.getSeconds();
+  const minutes = now.getMinutes();
+  const hours = now.getHours();
+
+  const secondHand = document.querySelector('.second-hand');
+  const minuteHand = document.querySelector('.minute-hand');
+  const hourHand = document.querySelector('.hour-hand');
+
+  const secondsDegrees = ((seconds / 60) * 360) + 90;
+  const minutesDegrees = ((minutes / 60) * 360) + ((seconds/60)*6) + 90;
+  const hoursDegrees = ((hours / 12) * 360) + ((minutes/60)*30) + 90;
+
+  secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+  minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+  hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+</script>
+
+</body>
+</html>
